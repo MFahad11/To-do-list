@@ -1,0 +1,30 @@
+<%- include('./Partials/header.ejs')%>
+<div class=" btn-group-vertical me-3 position-fixed top-50 end-0 translate-middle-y" role="group" aria-label="Vertical button group"><a href="/history" type="button" class="btn d-block mb-3 btn-lg text-light " style="background-color: #ab7de9;" >
+    Tasks history <i class="fa-solid fa-arrow-right text-light"></i>
+</a>
+<button type="button" class="btn btn-lg text-light " style="background-color: #ab7de9;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    See Statistics <i class="fa-solid fa-eye text-light"></i>
+</button></div>
+<div class="container mt-3">
+    <div class="text-center mx-auto">
+        <p><span class="display-6 fw-bolder" style="color: #ab7de9;">To-do List </span><span class="text-muted fs-6" style="color:#acb4cc !important"><%= user_name %></span></p>
+        <form id="todoAdd" method="post" action="/home" class=" w-50 input-group mx-auto shadow bg-body rounded">
+            <input type="text" name="task" class="form-control shadow-none" placeholder="Enter your task">
+            <button type="submit" class="btn btn-lg align-middle"><i class="fa-solid fa-plus text-light"></i></button>
+        </form>
+    </div>
+    <div class="text-center mt-5 mx-auto" id="lists">
+        <div class="w-50 mx-auto shadow p-3 mb-5 bg-body rounded" id="form-container">
+            <% data.forEach((item,index)=>{%>
+            <form method="post" action="/option">
+                <input type="text" hidden name="db_index"  value="<%= db_index[index] %>">
+                <input type="text" name="task" value="<%= item %>" readonly class="form-control shadow-none my-4 d-inline" placeholder="Enter task">
+                <button type="button" name="action" value="edit" class="btn edit mb-2 px-0 ms-3"><i class="fa-solid fa-pen"></i></button>
+                <button type="submit" name="action" value="done" class="btn mb-2 px-0 mx-3"><i class="fa-solid fa-circle-check"></i></button>
+                <button type="submit" name="action" value="delete" class="btn mb-2 px-0 "><i class="fa-solid fa-trash"></i></button>
+            </form>
+            <%})%>
+        </div>
+    </div>
+</div>
+<%- include('./Partials/footer.ejs')%>

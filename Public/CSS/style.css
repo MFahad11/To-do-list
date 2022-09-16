@@ -1,0 +1,61 @@
+body{
+    font-size: 62.5%;
+    background-color: #e3ebfb;
+}
+#lists input{
+    height:2.5rem;
+    width: 80%;
+}
+#lists i{
+    font-size: 1rem;
+    
+}
+#form-container{
+    background-color: white;
+}
+.header{
+    background-color: #ab7de9;
+}
+#lists button{
+    border: none; 
+}
+#lists div{
+    height: fit-content;
+}
+#todoAdd{
+    height:3rem;
+}
+#todoAdd button{
+    background-color: #ab7de9;
+    border: transparent;
+}
+#todoAdd button:hover{
+    background-color: rgb(171, 125, 232,0.9);
+    border: none;
+}
+.fa-pen, .fa-circle-check, .fa-trash,.fa-check-double{
+    transition: all 0.2s;
+}
+.fa-pen:hover{
+    color:blue;
+    transform: scale(1.5);
+}
+.fa-circle-check:hover{
+    color: green;
+    transform: scale(1.5);
+}
+.fa-trash:hover{
+    color: red;
+    transform: scale(1.5);
+}
+.fa-check-double:hover{
+    color: #ab7de9;
+    transform: scale(1.5);
+}
+input{
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+}
+input:focus{
+    border: 2px solid #ab7de9;
+}

@@ -1,0 +1,55 @@
+<%- include('./Partials/header.ejs')%>
+<div class=" btn-group-vertical me-3 position-fixed top-50 end-0 translate-middle-y" role="group" aria-label="Vertical button group"><a href="/home" type="button" class="btn d-block mb-3 btn-lg text-light " style="background-color: #ab7de9;" >
+    Add new <i class="fa-solid fa-plus text-light"></i>
+</a>
+<button type="button" class="btn btn-lg text-light " style="background-color: #ab7de9;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    See Statistics <i class="fa-solid fa-eye text-light"></i>
+</button></div>
+<div class="container mt-3">
+    <div class="text-center mx-auto">
+        <p><span class="display-6 fw-bolder" style="color: #ab7de9;">Tasks History </span><span class="text-muted fs-6" style="color:#acb4cc !important"><%= user_name %></span></p>
+        <div id="todoAdd" class="w-50 input-group mx-auto shadow bg-body rounded">
+            <input id="searchtext" type="text" name="task" class="form-control shadow-none" placeholder="Search for Task">
+            <button type="button" class="btn btn-lg align-middle" style="background-color: #ab7de9;" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-magnifying-glass text-light"></i></button>
+        </div>
+    </div>
+    <div class="text-center mt-5 mx-auto">
+        <div class="w-50 shadow p-3 ps-5 mb-5 bg-body rounded  mx-auto" id="form-container">
+            <% data.forEach((item,index)=>{ %>
+            <form method="post" action="/option" class="hstack">      
+                <input type="text" name="task" value="<%= item %>" readonly class="form-control w-75 me-4 my-4 d-inline border border-primary">
+                <% if(status[index]==="Active"){ %>
+                    <p class="fs-6 rounded fw-bolder text-info bg-light p-1 m-0" style="width:15% ;"><%= status[index] %></p>
+                <%}else if(status[index]==="Completed"){%>
+                    <p class="fs-6 rounded fw-bolder text-success bg-light p-1 m-0" style="width:15% ;"><%= status[index] %></p>
+                <%}else{%>
+                    <p class="fs-6 rounded fw-bolder text-danger bg-light p-1 m-0" style="width:15% ;"><%= status[index] %></p>
+                <%}%>
+            </form>
+            <%})%>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<%- include('./Partials/footer.ejs')%>
+
+<script>
+    jQuery.noConflict();
+    jQuery(document).ready(function($){
+        console.log($('#searchtext').parent());
+        $("#searchtext").keyup(()=>{
+            console.log();
+            let search_bar_text=$("#searchtext").val().toLowerCase();
+            let list=$("#form-container").children()
+            for(let index=0;index<list.length;index++){
+                let input_element=list[index].getElementsByTagName('input')[0];
+                let input_value=input_element.getAttribute('value');
+                if(input_value.toLowerCase().indexOf(search_bar_text)>-1){
+                    list[index].style.display='';
+                }else{
+                    list[index].style.display='none';
+                }
+            }
+            })
+        })
+</script>
